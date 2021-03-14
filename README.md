@@ -1,5 +1,6 @@
 # visitadomiciliarforecast
-previsão do número de visitas domiciliares para as próximas 20 observações
+previsão do número de visitas domiciliares para as próximas 20 observações(meses)
+
 #instala e carrega pacote exigido
 getwd()
 library(readr)
@@ -128,21 +129,11 @@ modelo = list()
 for (i in unique( unidades$UNIDADES)){ 
     ABRAAO <- subset(unidades, unidades$UNIDADES == i )
     
-
-    ##ggplot(ABRAAO, aes(MES_ANO, VISITAS, group = 1)) + geom_line()
-    
-    modelo[[i]] <- auto.arima(ABRAAO$VISITAS, lambda = "auto", biasadj = TRUE,
-                              stepwise = FALSE, approximation = FALSE, ic = "aic")
 }
 
 modelo = list()
 for (i in unique( unidades$UNIDADES)){ 
     projecao <- subset(unidades, unidades$UNIDADES == i )
-    
-    #modelo[[i]] <- auto.arima(projecao$VISITAS, lambda = "auto", biasadj = TRUE,
-        #                      stepwise = FALSE, approximation = FALSE, ic = "aic")
-    modelo[[i]] <- auto.arima(projecao$VISITAS, lambda = 0, biasadj = TRUE,
-                           stepwise = FALSE, approximation = FALSE, ic = "aic")
 
     }
 
